@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foods Banned in Countries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        .food-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .food-image {
+            width: 80px;
+            height: 80px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .food-details {
+            flex: 1;
+        }
+        .food-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .banned-countries {
+            font-size: 14px;
+            color: #666;
+        }
+        #chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: orange;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #chatbot-button:hover {
+            background-color: darkorange;
+        }
+    </style>
+    <link rel="icon" type="image/x-icon" href="no-food.png">
+</head>
+<body>
+    <div class="container">
+        <h1>Foods Banned in Various Countries</h1>
+        <div id="food-list">
+            <!-- Food items will be dynamically added here -->
+        </div>
+        <button id="chatbot-button">Chat with Us</button>
+    </div>
+
+    <script>
+        document.getElementById('chatbot-button').addEventListener('click', function() {
+            window.open('https://ai-chat-for-customer-service-cc0abf.zapier.app', 'Chatbot', 'width=300,height=400');
+        });
+        // Assuming your JSON data structure will be loaded here
+        const foodsData = [
+        [
+            {
+                "food_name": "Arby’s sourdough breakfast bread, croissant, and French toast sticks",
+                "banned_countries": ["India", "Germany", "France", "Italy", "Spain", "Poland", "Netherlands", "Belgium", "Sweden", "Czech Republic", "Greece", "Portugal", "Hungary", "Austria", "Bulgaria", "Denmark", "Slovakia", "Finland", "Lithuania", "Slovenia", "Latvia", "Estonia", "Luxembourg", "Malta"]
+            },
+            {
+                "food_name": "Beef",
+                "banned_countries": ["India"]
+            },
+            {
+                "food_name": "Meat with ractopamine (pork)",
+                "banned_countries": ["China", "Russia"]
+            },
+            {
+                "food_name": "Ritz cracker",
+                "banned_countries": ["China", "Brazil", "Germany", "United Kingdom", "France", "Italy", "Spain", "Poland", "Canada", "New Zealand", "Cyprus"]
+            },
+            {
+                "food_name": "Absinthe (unless thujone-free)",
+                "banned_countries": ["United States", "Australia"]
+            },
+            {
+                "food_name": "Ackee fruit",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Authentic (homemade) brie",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Beluga caviar",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Bird's nest soup",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Black pudding",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Bushmeat",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Camembert (authentic Camembert de Normandie)",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Casu marzu cheese",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Époisses cheese (from France)",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Flamin' Hot Cheetos (banned in some schools)",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Foie gras (banned in California)",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Four Loko (original caffeinated version)",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Haggis",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Horse meat",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Japanese pufferfish",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Junk food (banned in some schools)",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Kinder Eggs (original version)",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Lazy Cakes",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Mirabelle plums",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Mont d'Or cheese",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Ortolan",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Queen conch",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Raw milk",
+                "banned_countries": ["United States", "Finland"]
+            },
+            {
+                "food_name": "Redfish (banned in most states)",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Sassafras oil",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Sea turtles",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Shark fins (banned in US in 2022)",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Silver dragees (silver sprinkles)",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Swan (specifically the trumpeter swan)",
+                "banned_countries": ["United States"]
+            },
+            {
+                "food_name": "Citrus soda",
+                "banned_countries": ["Japan", "Germany", "France", "Italy", "Spain", "Poland", "Cyprus"]
+            },
+            {
+                "food_name": "Doritos Light",
+                "banned_countries": ["Germany", "France", "Italy", "Spain", "Poland", "Hungary", "Bulgaria", "Croatia", "Lithuania", "Slovenia", "Latvia"]
+            },
+            {
+                "food_name": "Drumstick ice cream",
+                "banned_countries": ["Germany", "France", "Italy", "Spain", "Poland", "Greece", "Portugal", "Hungary", "Austria", "Bulgaria", "Croatia", "Lithuania", "Slovenia", "Latvia"]
+            },
+            {
+                "food_name": "Fresca soda",
+                "banned_countries": ["Germany", "France", "Italy", "Spain", "Poland", "Australia", "Cyprus", "Luxembourg", "Malta"]
+            },
+            {
+                "food_name": "Froot Loops cereal",
+                "banned_countries": ["United States", "Germany", "France", "Italy", "Spain", "Australia", "Finland", "Bulgaria", "Hungary", "Austria", "Slovakia", "Portugal", "Greece", "Cyprus", "Luxembourg"]
+            },
+            {
+                "food_name": "Hawaiian papaya",
+                "banned_countries": ["Germany", "France", "Italy", "Spain", "Poland", "Greece", "Portugal", "Hungary", "Austria", "Bulgaria", "Czech Republic", "Greece", "Portugal", "Hungary", "Austria", "Bulgaria", "Denmark", "Slovakia", "Finland", "Lithuania", "Slovenia", "Latvia", "Estonia"]
+            },
+            {
+                "food_name": "Instant mashed potatoes",
+                "banned_countries": ["Japan", "Germany", "United Kingdom", "France", "Italy", "Spain", "Australia", "Canada", "Greece", "Portugal", "Hungary", "Austria", "Cyprus", "Denmark", "Slovakia", "Finland", "Norway"]
+            },
+            {
+                "food_name": "Mountain Dew",
+                "banned_countries": ["United States", "Germany", "France", "Italy", "Spain", "Poland", "Japan", "Italy", "Spain", "Portugal", "Hungary", "Austria", "Bulgaria", "Czech Republic", "Greece"]
+            },
+            {
+                "food_name": "Ketchup",
+                "banned_countries": ["France"]
+            },
+            {
+                "food_name": "Maraschino cherries",
+                "banned_countries": ["United States", "United Kingdom", "France", "Italy", "Spain", "Germany", "Portugal", "Hungary", "Austria", "Bulgaria", "Denmark", "Lithuania", "Slovenia", "Latvia", "Luxembourg", "Malta"]
+            },
+            {
+                "food_name": "Skittles",
+                "banned_countries": ["United States", "Germany", "France", "Italy", "Spain", "Poland", "Germany", "France", "Italy", "Spain", "Portugal", "Hungary", "Austria", "Bulgaria", "Denmark", "Slovakia", "Finland", "Lithuania", "Slovenia", "Latvia", "Luxembourg"]
+            },
+            {
+                "food_name_name": "US apples",
+                "banned_countries": ["United States", "Germany", "France", "Italy", "Spain", "Poland", "Germany", "France", "Italy", "Spain", "Portugal", "Hungary", "Austria", "Bulgaria", "Denmark", "Slovakia", "Finland", "Lithuania", "Slovenia", "Latvia", "Estonia", "Cyprus"]
+            },
+            {
+                "food_name": "US breakfast cereal brands",
+                "banned_countries": ["United States", "Japan", "Germany", "France", "Italy", "Spain", "Australia", "Canada", "Germany", "France", "Italy", "Spain", "Portugal", "Hungary", "Austria", "Bulgaria", "Denmark", "Slovakia", "Finland", "Norway", "Ireland", "Croatia", "Cyprus"]
+            }
+        ]
+
+        ];
+
+        // Function to create and append food items to the DOM
+
+        function displayFoods() {
+            const foodListElement = document.getElementById('food-list');
+            var index = 0;
+
+            foodsData.forEach(food => {
+
+                do {
+                    
+                
+                    const foodItem = document.createElement('div');
+                    foodItem.classList.add('food-item');
+
+                    // Display food name
+                    const foodDetails = document.createElement('div');
+                    foodDetails.classList.add('food-details');
+                    const foodName = document.createElement('div');
+                    foodName.classList.add('food-name');
+                    foodName.textContent = food[index].food_name; // Access food name directly
+                    foodDetails.appendChild(foodName);
+
+                    // Display banned countries
+                    const bannedCountries = document.createElement('div');
+                    bannedCountries.classList.add('banned-countries');
+                    bannedCountries.textContent = `Banned in: ${food[index].banned_countries}`; // Access banned countries directly
+                    foodDetails.appendChild(bannedCountries);
+
+                    foodItem.appendChild(foodDetails);
+                    foodListElement.appendChild(foodItem);
+                    index += 1;
+                } while (index < 47)
+            });
+        }
+
+        // Call the function to display foods on page load
+        displayFoods();
+
+    </script>
+</body>
+</html>
